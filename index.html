@@ -2,84 +2,122 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Accueil - Nom Prénom</title>
-  <!-- Inclusion de Font Awesome pour les icônes -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
+  <!-- Lien vers Font Awesome pour les icônes -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+  >
   <style>
-    body {
-      font-family: Arial, sans-serif;
+    * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      background: #f5f5f5;
-      text-align: center;
     }
-    .profile {
-      margin-top: 50px;
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      color: #333;
     }
-    .profile img {
-      border-radius: 50%;
-      width: 150px;
-      height: 150px;
-      object-fit: cover;
+    /* Barre de navigation (réseaux sociaux) */
+    nav {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      padding: 10px 20px;
+      background: #fff;
     }
-    .social-links {
-      margin: 20px 0;
-    }
-    .social-links a {
-      margin: 0 10px;
-      font-size: 2em;
+    nav .social-links a {
+      margin-left: 15px;
       color: #333;
       text-decoration: none;
+      font-size: 1.4rem;
       transition: color 0.3s;
     }
-    .social-links a:hover {
+    nav .social-links a:hover {
       color: #007BFF;
     }
-    .links a {
-      margin: 10px;
-      padding: 10px 20px;
+
+    /* Section de présentation (Hero) */
+    .hero {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      padding: 50px 20px;
+      background: #fafafa;
+    }
+    .hero .photo-container {
+      flex: 1 1 300px;
+      display: flex;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+    .hero .photo-container img {
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .hero .intro-text {
+      flex: 1 1 300px;
+      max-width: 500px;
+      margin-left: 40px;
+      margin-right: 40px;
+    }
+    .hero .intro-text h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+    }
+    .hero .intro-text p {
+      font-size: 1.1rem;
+      line-height: 1.5;
+      margin-bottom: 20px;
+    }
+
+    /* Section des liens (les "bulles") */
+    .links-section {
+      display: flex;
+      justify-content: center;
+      margin: 40px 0;
+    }
+    .links-section .link-bubble {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
       background: #007BFF;
       color: #fff;
+      font-weight: bold;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 20px;
       text-decoration: none;
-      border-radius: 5px;
-      display: inline-block;
-      transition: background 0.3s;
+      transition: background 0.3s, transform 0.3s;
     }
-    .links a:hover {
+    .links-section .link-bubble:hover {
       background: #0056b3;
+      transform: scale(1.05);
     }
-    .greeting {
-      margin-top: 20px;
-      font-size: 1.2em;
-      color: #555;
+
+    /* Responsive */
+    @media screen and (max-width: 768px) {
+      .hero {
+        flex-direction: column;
+        text-align: center;
+      }
+      .hero .intro-text {
+        margin-left: 0;
+        margin-right: 0;
+      }
     }
   </style>
 </head>
 <body>
-  <script>
-    // Affiche une salutation dynamique en fonction de l'heure
-    document.addEventListener("DOMContentLoaded", function() {
-      var now = new Date();
-      var hour = now.getHours();
-      var greeting;
-      if (hour < 12) {
-        greeting = "Bonjour!";
-      } else if (hour < 18) {
-        greeting = "Bon après-midi!";
-      } else {
-        greeting = "Bonsoir!";
-      }
-      var greetingElement = document.createElement('div');
-      greetingElement.className = "greeting";
-      greetingElement.textContent = greeting;
-      document.body.insertBefore(greetingElement, document.body.firstChild);
-    });
-  </script>
 
-  <div class="profile">
-    <img src="photo.jpg" alt="Photo de Nom Prénom">
-    <h1>Nom Prénom</h1>
+  <!-- Barre de navigation avec réseaux sociaux -->
+  <nav>
     <div class="social-links">
       <a href="https://www.instagram.com/votreprofil" target="_blank"><i class="fab fa-instagram"></i></a>
       <a href="https://www.linkedin.com/in/votreprofil" target="_blank"><i class="fab fa-linkedin"></i></a>
@@ -87,12 +125,29 @@
       <a href="https://www.facebook.com/votreprofil" target="_blank"><i class="fab fa-facebook"></i></a>
       <a href="https://discord.gg/votreserveur" target="_blank"><i class="fab fa-discord"></i></a>
     </div>
+  </nav>
+
+  <!-- Section de présentation -->
+  <section class="hero">
+    <div class="photo-container">
+      <!-- Remplacez "photo.jpg" par le chemin de votre propre photo -->
+      <img src="photo.jpg" alt="Photo de Nom Prénom">
+    </div>
+    <div class="intro-text">
+      <h1>Hello</h1>
+      <p>
+        Bienvenue sur ma page personnelle ! Je suis [Nom Prénom].
+        Ici, vous trouverez quelques-uns de mes projets et un moyen de me contacter.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section avec trois bulles de liens -->
+  <div class="links-section">
+    <a class="link-bubble" href="MDP.html">MDP</a>
+    <a class="link-bubble" href="Bideogemu.html">Bideogemu</a>
+    <a class="link-bubble" href="GameZone.html">GameZone</a>
   </div>
 
-  <div class="links">
-    <a href="MDP.html">MDP</a>
-    <a href="Bideogemu.html">Bideogemu</a>
-    <a href="GameZone.html">GameZone</a>
-  </div>
 </body>
 </html>
