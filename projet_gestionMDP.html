@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Gestionnaire de mots de passe</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    .container { max-width: 600px; margin: 0 auto; }
+    input, button { padding: 8px; margin: 5px; }
+    #passwordList { margin-top: 20px; list-style-type: none; padding: 0; }
+    .password-item { border: 1px solid #ccc; padding: 10px; margin-bottom: 5px; display: flex; justify-content: space-between; align-items: center; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Gestionnaire de mots de passe</h1>
+    
+    <div>
+      <label for="length">Longueur du mot de passe :</label>
+      <input type="number" id="length" value="12" min="6">
+      <button id="generateBtn">Générer</button>
+    </div>
+    
+    <div>
+      <input type="text" id="generatedPassword" readonly style="width: 80%;">
+      <button id="saveBtn">Sauvegarder</button>
+    </div>
+    
+    <div>
+      <h2>Mots de passe sauvegardés :</h2>
+      <ul id="passwordList"></ul>
+    </div>
+  </div>
+
+  <script>
+    // Fonction pour générer un mot de passe sécurisé
+    function generatePassword(length) {
+      const charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+~`|}{[]:;?><,./-=";
+      let password = "";
+      for (let i = 0; i < length; i++) {
+        const randomIndex = Math.floor(Math.random() * charset.length);
+        password += charset[randomIndex];
+      }
+      return password;
+    }
+
+    // Références aux éléments de la page
+    const generateBtn = document.getElementById("generateBtn");
+    const saveBtn = document.getElementById("saveBtn");
+    const generatedPasswordInput = document.getElementById("generatedPassword");
+    const passwordList = document.getElementById("passwordList");
+    const lengthInput = document.getElementById("length");
+
+    // Générer et afficher un mot de passe sécurisé
+    generateBtn.addEventListener("click", function() {
+      const length = parseInt(lengthInput.value) || 12;
+      const password = generatePassword(length);
+      generatedPasswordInput.value = password;
+    });
+
+    // Sauvegarder le mot de passe dans le localStorage
+    saveBtn.addEventListener("click", function() {
+      const password = generatedPasswordInput.value;
+      if (!password) {
+        alert("Veuillez générer un mot de passe d'abord !");
+        return;
+      }
+      let passwords = JSON.parse(localStorage.getItem("passwords")) || [];
+      passwords.push(password);
+      localStorage.setItem("passwords", JSON.stringify(passwords));
+      displayPasswords();
+      generatedPasswordInput.value = "";
+    });
+
+    // Afficher les mots de passe sauvegardés
+    function displayPasswords() {
+      const passwords = JSON.parse(localStorage.getItem("passwords")) || [];
+      passwordList.innerHTML = "";
+      passwords.forEach((pwd, index) => {
+        const li = document.createElement("li");
+        li.className = "password-item";
+        li.innerHTML = `<span>${pwd}</span>`;
+        
+        // Bouton pour supprimer le mot de passe
+        const deleteBtn = document.createElement("button");
+        deleteBtn.textContent = "Supprimer";
+        deleteBtn.addEventListener("click", function() {
+          deletePassword(index);
+        });
+        li.appendChild(deleteBtn);
+        passwordList.appendChild(li);
+      });
+    }
+
+    // Supprimer un mot de passe de localStorage
+    function deletePassword(index) {
+      let passwords = JSON.parse(localStorage.getItem("passwords")) || [];
+      passwords.splice(index, 1);
+      localStorage.setItem("passwords", JSON.stringify(passwords));
+      displayPasswords();
+    }
+
+    // Charger les mots de passe sauvegardés au chargement de la page
+    window.addEventListener("load", displayPasswords);
+  </script>
+</body>
+</html>
