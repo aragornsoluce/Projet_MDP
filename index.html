@@ -2,7 +2,7 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
-  <title>Accueil - Paul Teillet</title>
+  <title>Accueil - Nom Prénom</title>
   <!-- Lien vers Font Awesome pour les icônes -->
   <link
     rel="stylesheet"
@@ -14,28 +14,33 @@
       margin: 0;
       padding: 0;
     }
+
+    /* Corps de la page */
     body {
       font-family: Arial, sans-serif;
-      background: #f2f2f2;
-      color: #333;
+      /* Dégradé de fond */
+      background: linear-gradient(to bottom right, #6dd5ed, #2193b0);
+      color: #fff;
     }
+
     /* Barre de navigation (réseaux sociaux) */
     nav {
       display: flex;
       justify-content: flex-end;
       align-items: center;
       padding: 10px 20px;
-      background: #fff;
+      /* Fond transparent pour laisser voir le dégradé */
+      background: transparent;
     }
     nav .social-links a {
       margin-left: 15px;
-      color: #333;
+      color: #fff;
       text-decoration: none;
       font-size: 1.4rem;
       transition: color 0.3s;
     }
     nav .social-links a:hover {
-      color: #007BFF;
+      color: #ffe600;
     }
 
     /* Section de présentation (Hero) */
@@ -44,8 +49,8 @@
       flex-wrap: wrap;
       align-items: center;
       justify-content: center;
-      padding: 50px 20px;
-      background: #fafafa;
+      padding: 60px 20px;
+      min-height: 60vh;
     }
     .hero .photo-container {
       flex: 1 1 300px;
@@ -58,26 +63,25 @@
       height: 220px;
       border-radius: 50%;
       object-fit: cover;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
     }
     .hero .intro-text {
       flex: 1 1 300px;
       max-width: 500px;
       margin-left: 40px;
       margin-right: 40px;
+      text-align: left;
     }
     .hero .intro-text h1 {
       font-size: 3rem;
       margin-bottom: 10px;
-      background: linear-gradient(45deg, #007BFF, #0056b3);
-      background-clip: text;
-      -webkit-background-clip: text;
-      color: transparent;
+      color: #fff;
     }
     .hero .intro-text p {
-      font-size: 1.1rem;
+      font-size: 1.2rem;
       line-height: 1.5;
       margin-bottom: 20px;
+      color: #f0f0f0;
     }
 
     /* Section des liens (les "bulles") */
@@ -90,8 +94,8 @@
       width: 100px;
       height: 100px;
       border-radius: 50%;
-      background: #007BFF;
-      color: #fff;
+      background: #ffe600;
+      color: #333;
       font-weight: bold;
       display: flex;
       align-items: center;
@@ -101,11 +105,11 @@
       transition: background 0.3s, transform 0.3s;
     }
     .links-section .link-bubble:hover {
-      background: #0056b3;
+      background: #ffcc00;
       transform: scale(1.05);
     }
 
-    /* Responsive */
+    /* Responsive : pour les écrans plus petits */
     @media screen and (max-width: 768px) {
       .hero {
         flex-direction: column;
@@ -124,9 +128,10 @@
   <nav>
     <div class="social-links">
       <a href="https://www.instagram.com/votreprofil" target="_blank"><i class="fab fa-instagram"></i></a>
-      <a href="https://www.linkedin.com/in/paul-teillet-999a84250/" target="_blank"><i class="fab fa-linkedin"></i></a>
+      <a href="https://www.linkedin.com/in/votreprofil" target="_blank"><i class="fab fa-linkedin"></i></a>
       <a href="https://twitter.com/votreprofil" target="_blank"><i class="fab fa-twitter"></i></a>
-      <a href="https://www.facebook.com/profile.php?id=100077290363100" target="_blank"><i class="fab fa-facebook"></i></a>
+      <a href="https://www.facebook.com/votreprofil" target="_blank"><i class="fab fa-facebook"></i></a>
+      <a href="https://discord.gg/votreserveur" target="_blank"><i class="fab fa-discord"></i></a>
     </div>
   </nav>
 
@@ -134,12 +139,12 @@
   <section class="hero">
     <div class="photo-container">
       <!-- Remplacez "photo.jpg" par le chemin de votre propre photo -->
-      <img src="Images/photo_profile.jpg" alt="Photo de Nom Prénom">
+      <img src="photo.jpg" alt="Photo de Nom Prénom">
     </div>
     <div class="intro-text">
-      <h1>Qui suis-je ?</h1>
+      <h1>Hello</h1>
       <p>
-        Paul Teillet, jeune étudiant à l'école EFREI Paris, je suis heureux de vous présentez ma page internet. 
+        Bienvenue sur ma page personnelle ! Je suis [Nom Prénom].  
         Ici, vous trouverez quelques-uns de mes projets et un moyen de me contacter.
       </p>
     </div>
