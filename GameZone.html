@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Gamerzone</title>
+  <style>
+    /* Réinitialisation des marges et du padding */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* Corps de la page avec dégradé bleu vers blanc */
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom, #3498db, #ffffff);
+      /* On peut ajuster la direction du dégradé ou les couleurs selon vos envies */
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* En-tête du site */
+    header {
+      background-color: #1f1f1f;
+      padding: 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      color: #fff;
+      font-size: 2em;
+    }
+
+    /* Bouton Home */
+    .home-button {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 20px;
+      background-color: #fff;
+      color: #000;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+    }
+
+    .home-button:hover {
+      background-color: #ddd;
+    }
+
+    /* Section des jeux */
+    .games-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 40px;
+      padding: 40px;
+      flex: 1;
+    }
+
+    .game {
+      width: 200px;
+      text-align: center;
+    }
+
+    .game a {
+      text-decoration: none;
+      color: #000;
+    }
+
+    .game img {
+      width: 100%;
+      border-radius: 8px;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    /* Effet d’agrandissement au survol */
+    .game img:hover {
+      transform: scale(1.1);
+    }
+
+    /* Nom du jeu en dessous de l’image */
+    .game p {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    /* Pied de page (optionnel) */
+    footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #f2f2f2;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- En-tête -->
+  <header>
+    <h1>Gamerzone</h1>
+    <a class="home-button" href="index.html">Home</a>
+  </header>
+
+  <!-- Contenu principal : la liste des jeux -->
+  <div class="games-container">
+    <!-- Jeu 1 : Snake -->
+    <div class="game">
+      <a href="#" target="_blank">
+        <img src="snake.png" alt="Snake">
+        <p>Snake</p>
+      </a>
+    </div>
+
+    <!-- Jeu 2 : Tetris -->
+    <div class="game">
+      <a href="#" target="_blank">
+        <img src="tetris.png" alt="Tetris">
+        <p>Tetris</p>
+      </a>
+    </div>
+
+    <!-- Jeu 3 : Flappy Bird -->
+    <div class="game">
+      <a href="#" target="_blank">
+        <img src="flappybird.png" alt="Flappy Bird">
+        <p>Flappy Bird</p>
+      </a>
+    </div>
+
+    <!-- Jeu 4 : 2048 -->
+    <div class="game">
+      <a href="#" target="_blank">
+        <img src="2048.png" alt="2048">
+        <p>2048</p>
+      </a>
+    </div>
+  </div>
+
+  <!-- Pied de page (optionnel) -->
+  <footer>
+    <p>&copy; 2025 Gamerzone - Tous droits réservés</p>
+  </footer>
+</body>
+</html>
