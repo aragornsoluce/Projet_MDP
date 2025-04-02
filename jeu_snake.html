@@ -1,13 +1,37 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Jeu Snake</title>
-  <link rel="stylesheet" href="Styles/style_snake.css">
+  <link rel="stylesheet" href="Styles/style_snake.css" />
 </head>
 <body>
-  <canvas id="gameCanvas" width="400" height="400"></canvas>
+
+  <!-- En-tête -->
+  <header>
+    <button id="homeBtn" onclick="window.location.href='index.html'">
+      Retour à la page principale
+    </button>
+    <h1>Jeu Snake</h1>
+  </header>
+
+  <!-- Zone principale -->
+  <main>
+    <div id="gameContainer">
+      <canvas id="gameCanvas" width="400" height="400"></canvas>
+    </div>
+    <button id="restartBtn" onclick="location.reload()">
+      Recommencer
+    </button>
+  </main>
+
+  <!-- Pied de page -->
+  <footer>
+    © 2025 Paul Teillet - Tous droits réservés
+  </footer>
+
+  <!-- Script du jeu -->
   <script src="Scripts/fonction_snake.js"></script>
 </body>
 </html>
