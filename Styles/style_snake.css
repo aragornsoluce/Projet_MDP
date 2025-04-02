@@ -1,13 +1,87 @@
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  margin: 0;
-  background-color: #f0f0f0;
+/* Réinitialise le box-sizing pour un meilleur contrôle des marges/paddings */
+* {
+  box-sizing: border-box;
 }
 
-canvas {
+/* Style général de la page */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  /* Dégradé bleu clair */
+  background: linear-gradient(to bottom, #add8e6, #ffffff);
+}
+
+/* En-tête */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #0066cc;
+  padding: 10px;
+}
+
+header h1 {
+  margin: 0;
+  color: #fff;
+  font-size: 1.5rem;
+}
+
+/* Bouton pour revenir à la page principale */
+#homeBtn {
+  background-color: #fff;
+  color: #0066cc;
+  border: none;
+  padding: 8px 16px;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+/* Zone principale (centrage) */
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+}
+
+/* Conteneur du canvas avec un contour plus attractif */
+#gameContainer {
+  border: 5px solid #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  background-color: #000; /* Fond noir derrière le canvas */
+  padding: 10px;
+}
+
+/* Canvas (facultatif : ajuster sa taille ou son apparence) */
+#gameCanvas {
+  display: block;
   background-color: #000;
-  border: 2px solid #fff;
+}
+
+/* Bouton pour recommencer le jeu */
+#restartBtn {
+  margin-top: 15px;
+  padding: 10px 20px;
+  background-color: #0066cc;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+#restartBtn:hover {
+  background-color: #004999;
+}
+
+/* Pied de page */
+footer {
+  text-align: center;
+  margin-top: 20px;
+  padding: 10px;
+  color: #333;
+  font-size: 0.9rem;
+  background-color: #f0f0f0;
 }
