@@ -1,6 +1,6 @@
 # Site Internet Paul Teillet
 
-Ce site est une sorte de protfolio fait à partir des langage HTML, CSS et JavaScript. Il a pour but de me présenter et d'expliquer qui je suis. 
+Ce site est une sorte de portfolio fait à partir des langages HTML, CSS et JavaScript. Il a pour but de me présenter et d'expliquer qui je suis. 
 
 ## Structure du Projet
 
