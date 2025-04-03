@@ -38,7 +38,7 @@ Ce site est une sorte de portfolio fait à partir des langages HTML, CSS et Java
 
 ## Auteur
 
-- **Paul Teillet** – Créateur du site personnel
+- **Paul Teillet** – Créateur du site
 
 ## Licence
 
