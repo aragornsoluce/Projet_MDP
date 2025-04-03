@@ -1,4 +1,4 @@
-# Site Internet Paul Teillet
+# Mon site internet 
 
 Ce site est une sorte de portfolio fait à partir des langages HTML, CSS et JavaScript. Il a pour but de me présenter et d'expliquer qui je suis. 
 
