@@ -21,6 +21,9 @@ let food = {
   y: Math.floor(Math.random() * 19 + 1) * box
 };
 
+// Score initial
+let score = 0;
+
 // Écoute des touches pour changer la direction
 document.addEventListener("keydown", directionHandler);
 function directionHandler(event) {
@@ -47,16 +50,15 @@ function collision(newHead, array) {
 
 // Fonction principale de dessin et mise à jour du jeu
 function draw() {
-  // Dessine le fond de la zone de jeu
-  ctx.fillStyle = "black";
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  // Efface le canvas pour laisser apparaître l'arrière-plan défini en CSS
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
   
   // Dessine le serpent
   for (let i = 0; i < snake.length; i++) {
     ctx.fillStyle = i === 0 ? "lime" : "white";
     ctx.fillRect(snake[i].x, snake[i].y, box, box);
     
-    // Optionnel : ajouter une bordure à chaque segment
+    // Bordure de chaque segment
     ctx.strokeStyle = "black";
     ctx.strokeRect(snake[i].x, snake[i].y, box, box);
   }
@@ -65,7 +67,7 @@ function draw() {
   ctx.fillStyle = "red";
   ctx.fillRect(food.x, food.y, box, box);
   
-  // Récupère la position actuelle de la tête du serpent
+  // Position actuelle de la tête du serpent
   let snakeX = snake[0].x;
   let snakeY = snake[0].y;
   
@@ -81,14 +83,15 @@ function draw() {
     y: snakeY
   };
   
-  // Vérifie les collisions avec les murs ou le corps
+  // Vérifie les collisions avec les murs ou le corps du serpent
   if (
     snakeX < 0 || snakeX >= canvas.width ||
     snakeY < 0 || snakeY >= canvas.height ||
     collision(newHead, snake)
   ) {
     clearInterval(game);
-    alert("Game Over !");
+    saveScore(score);
+    alert("Game Over ! Ton score : " + score);
     return;
   }
   
@@ -97,17 +100,52 @@ function draw() {
   
   // Vérifie si le serpent a mangé la nourriture
   if (snakeX === food.x && snakeY === food.y) {
+    score++;
+    updateScoreDisplay();
     // Génère une nouvelle position pour la nourriture
     food = {
       x: Math.floor(Math.random() * 19 + 1) * box,
       y: Math.floor(Math.random() * 19 + 1) * box
     };
-    // Le serpent grandit : ne retire pas le dernier élément
+    // Le serpent grandit : ne retire pas le dernier segment
   } else {
-    // Retire le dernier élément pour simuler le déplacement
+    // Retire le dernier segment pour simuler le déplacement
     snake.pop();
   }
 }
 
-// Lance le jeu avec un intervalle de temps (100 ms)
+// Met à jour l'affichage du score
+function updateScoreDisplay() {
+  document.getElementById("scoreValue").textContent = score;
+}
+
+// Sauvegarde le score et met à jour le leaderboard (top 10)
+function saveScore(newScore) {
+  let scores = JSON.parse(localStorage.getItem("snakeScores")) || [];
+  scores.push(newScore);
+  // Tri décroissant
+  scores.sort((a, b) => b - a);
+  // Conserve les 10 meilleurs scores
+  scores = scores.slice(0, 10);
+  localStorage.setItem("snakeScores", JSON.stringify(scores));
+  updateLeaderboard();
+}
+
+// Affiche le leaderboard en récupérant les scores depuis le localStorage
+function updateLeaderboard() {
+  let scores = JSON.parse(localStorage.getItem("snakeScores")) || [];
+  const leaderboardElement = document.getElementById("leaderboard");
+  leaderboardElement.innerHTML = "";
+  
+  scores.forEach(scoreValue => {
+    const li = document.createElement("li");
+    li.textContent = scoreValue;
+    leaderboardElement.appendChild(li);
+  });
+}
+
+// Lancement du jeu avec un intervalle de 100 ms
 let game = setInterval(draw, 100);
+
+// Met à jour le leaderboard dès le chargement
+updateLeaderboard();
