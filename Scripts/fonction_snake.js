@@ -1,3 +1,13 @@
+// Demander le pseudonyme du joueur au début du jeu
+let playerName = localStorage.getItem("snakePlayer");
+if (!playerName) {
+  playerName = prompt("Veuillez saisir votre pseudonyme :");
+  if (!playerName || playerName.trim() === "") {
+    playerName = "Inconnu";
+  }
+  localStorage.setItem("snakePlayer", playerName);
+}
+
 // Récupération du canvas et du contexte de dessin
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
@@ -119,12 +129,22 @@ function updateScoreDisplay() {
   document.getElementById("scoreValue").textContent = score;
 }
 
-// Sauvegarde le score et met à jour le leaderboard (top 10)
+// Sauvegarde le score et met à jour le leaderboard pour le joueur courant
 function saveScore(newScore) {
   let scores = JSON.parse(localStorage.getItem("snakeScores")) || [];
-  scores.push(newScore);
-  // Tri décroissant
-  scores.sort((a, b) => b - a);
+  // Vérifie si le joueur est déjà présent dans le leaderboard
+  const existingIndex = scores.findIndex(entry => entry.name === playerName);
+  if (existingIndex !== -1) {
+    // Met à jour le score uniquement si le nouveau score est supérieur
+    if (newScore > scores[existingIndex].score) {
+      scores[existingIndex].score = newScore;
+    }
+  } else {
+    // Ajoute le joueur s'il n'est pas déjà dans le leaderboard
+    scores.push({ name: playerName, score: newScore });
+  }
+  // Tri décroissant par score
+  scores.sort((a, b) => b.score - a.score);
   // Conserve les 10 meilleurs scores
   scores = scores.slice(0, 10);
   localStorage.setItem("snakeScores", JSON.stringify(scores));
@@ -137,9 +157,9 @@ function updateLeaderboard() {
   const leaderboardElement = document.getElementById("leaderboard");
   leaderboardElement.innerHTML = "";
   
-  scores.forEach(scoreValue => {
+  scores.forEach(entry => {
     const li = document.createElement("li");
-    li.textContent = scoreValue;
+    li.textContent = entry.name + " : " + entry.score;
     leaderboardElement.appendChild(li);
   });
 }
